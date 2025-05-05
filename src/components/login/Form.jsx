@@ -1,6 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons';
 
+import Username from './InputsandButtons/Username.jsx';
+import Password from './InputsandButtons/Password.jsx';
+import SubmitButton from './InputsandButtons/Submit.jsx';
+
 export default function Form({ handleLogin }) {
   return (
     <div className="flex justify-center items-center w-auto h-screen text-white">
@@ -21,14 +25,9 @@ export default function Form({ handleLogin }) {
               </h1>
 
               <div className='flex flex-col'>
-                <input className="border-b-2 border-gray-400 outline-none p-2 mb-4 w-full bg-transparent focus:border-zinc-50" 
-                
-                type="email" placeholder="Email" required/>
-
-                <input className="border-b-2 border-gray-400 outline-none p-2 mb-4 bg-transparent focus:border-zinc-50" 
-                
-                type="password" placeholder="Password" required/>
-                <input className="bg-[#28d7a3] hover:bg-[#1da57c] transition-all duration-100 text-black font-bold py-2 px-4 rounded" value="Login" type="submit" onClick={handleLogin}/>
+                <Username />
+                <Password/>
+                <SubmitButton handleLogin={handleLogin}/>
               </div>
             </div>
           </form>
