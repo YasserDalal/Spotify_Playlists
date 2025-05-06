@@ -14,7 +14,7 @@ export default function Form({ handleLogin }) {
         max-w-[35%] 
         max-[420px]:min-w-[300px] 
         max-[500px]:max-w-[95%] w-full justify-center">
-          <form className="flex max-[450px]:flex-col border-[1px] border-[#28d7a3] rounded-lg py-2 pr-7 w-full items-center max-[450px]:px-10 shadow-[2px_0px_20px_0px_#28d7a3]">
+          <form className="flex max-[450px]:flex-col border-[1px] border-[#28d7a3] rounded-lg py-2 pr-7 w-full items-center max-[450px]:px-10 shadow-[2px_0px_20px_0px_#28d7a3]" onSubmit={handleLogin}>
             <div className='h-full text-[#28d7a3] px-10 pt-10'>
               <FontAwesomeIcon icon={faSpotify} size="6x"/>
             </div>
@@ -25,9 +25,9 @@ export default function Form({ handleLogin }) {
               </h1>
 
               <div className='flex flex-col'>
-                <Username />
+                <Username/>
                 <Password/>
-                <SubmitButton handleLogin={handleLogin}/>
+                <SubmitButton/>
               </div>
             </div>
           </form>
