@@ -1,9 +1,12 @@
-
-
+import TopBar from "./layouts/TopContent"
+import CenterContent from "./layouts/CenterContent"
+import BottomContent from "./layouts/BottomContent"
 export default function MainContent() {
   return (
-    <div>
-      <h1>Home</h1>
+    <div className="w-auto h-screen">
+      <TopBar />
+      <CenterContent />
+      <BottomContent />
     </div>
   )
 }
