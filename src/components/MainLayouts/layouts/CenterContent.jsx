@@ -6,6 +6,9 @@ import StoredContent from "./features/StoredContent";
 
 import getToken from "./features/fetchData/getToken";
 import searchTrack from "./features/fetchData/searchTrack";
+
+import prioritizeTracks from "../../../algorithm/searchAlgorithm";
+
 export default function CenterContent() {
   const [playlists, setPlaylists] = useState();
   const [song, setSong] = useState();
@@ -13,7 +16,9 @@ export default function CenterContent() {
   const searchSongs = async () => {
     const accessToken = await getToken();
     const data = await searchTrack(accessToken, song);
-    setPlaylists(data);
+
+    const sortedData = prioritizeTracks(data, song);
+    setPlaylists(sortedData);
   };
 
   const handleSongs = (e) => {
@@ -24,7 +29,7 @@ export default function CenterContent() {
     <div className="text-white bg-slate-700 pb-10">
       <SearchBar searchSongs={searchSongs} handleSongs={handleSongs}/>
       <div className="flex justify-center gap-10 pt-14 flex-wrap px-3">
-        <ListContent playlists={playlists} handleSongs={handleSongs} setArtist={setArtist} setSong={setSong}/>
+        <ListContent playlists={playlists} handleSongs={handleSongs} setSong={setSong}/>
         <StoredContent />
       </div>
     </div>
