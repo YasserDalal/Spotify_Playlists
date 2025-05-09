@@ -12,7 +12,12 @@ export default function ListContent({playlists, loading}) {
           <ul className="flex flex-col overflow-y-auto h-[80%] custom-scrollbar  scroll-fade">
              
             {loading ? (
-              <LoadingList />
+              <div>
+                <LoadingList />
+                <LoadingList />
+                <LoadingList />
+                <LoadingList />
+              </div>
               // 
             ) : playlists ? (
               playlists.map((playlist) => (
