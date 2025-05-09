@@ -38,6 +38,8 @@ export default function CenterContent() {
     setLoading(false);
   };
 
+  console.log(playlists);
+
   const enterKey = (e) => {
     if (e.key === "Enter") {
       searchSongs();

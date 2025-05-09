@@ -23,10 +23,13 @@ export default function ListContent({playlists, loading}) {
               playlists.map((playlist) => (
                 <ListButton playlist={playlist} key={playlist.id} />
               ))
-            ) : (
-              <p className="text-sm text-center text-gray-400 px-2">
-                No data. Type a song then click search.
-              </p>
+            ) : !playlists && (
+              <div className="flex flex-col items-center">
+                <img src="../../../../../public/No music.png" alt="No music image" className="w-72 relative"/>
+                <div className="absolute bottom-0">
+                  NO MUSIC FOUND
+                </div>
+              </div>
             )}
           </ul>
         </div>
