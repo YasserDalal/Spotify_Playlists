@@ -18,7 +18,7 @@ export default function MainLayout(){
     localStorage.setItem('isLoggedIn', true)
   }
   return (
-    <div className='w-full h-full'>
+    <div className='w-full h-full bg-slate-900'>
       {isLoggedIn ? <MainContent />  : <Form handleLogin={handleLogin} />}
     </div>
   )
