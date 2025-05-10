@@ -15,6 +15,10 @@ export default function CenterContent() {
   const [loading, setLoading] = useState(false);
 
   const searchSongs = async () => {
+    if (!song || song.trim() === '') {
+      setPlaylists();
+      return;
+    }
     setLoading(true);
     setPlaylists();
     const accessToken = await getToken();
@@ -38,8 +42,6 @@ export default function CenterContent() {
     setLoading(false);
   };
 
-  console.log(playlists);
-
   const enterKey = (e) => {
     if (e.key === "Enter") {
       searchSongs();
@@ -54,7 +56,7 @@ export default function CenterContent() {
     <div className="text-white bg-slate-700 pb-10">
       <SearchBar searchSongs={searchSongs} handleSongs={handleSongs} enterKey={enterKey}/>
       <div className="flex justify-center gap-10 pt-14 flex-wrap px-3">
-        <ListContent playlists={playlists} handleSongs={handleSongs} setSong={setSong} loading={loading}/>
+        <ListContent playlists={playlists} handleSongs={handleSongs} setSong={setSong} loading={loading} song={song}/>
         <StoredContent />
       </div>
     </div>
