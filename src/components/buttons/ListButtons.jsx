@@ -1,8 +1,8 @@
 
-export default function ListButton({handleSongs, playlist}) {
+export default function ListButton({playlist, handleClick}) {
   return (
     <li className="p-2 rounded-lg">
-      <div className="flex rounded-lg cursor-pointer p-2 hover:shadow-[0px_1.8px_1px_2px] hover:shadow-slate-700 duration-100 " onClick={handleSongs}>
+      <div className="flex rounded-lg cursor-pointer p-2 hover:shadow-[0px_1.8px_1px_2px] hover:shadow-slate-700 duration-100 z-10" onClick={handleClick}>
         <div className="w-36">
           <img src={playlist.album.images[1]?.url || playlist.album.images[0]?.url} loading="lazy" alt="singers picture" className="rounded-full"/>
         </div>
