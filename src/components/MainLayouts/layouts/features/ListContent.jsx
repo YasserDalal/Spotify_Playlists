@@ -24,8 +24,8 @@ export default function ListContent({playlists, loading, song, handleClick}) {
                 <ListButton playlist={playlist} key={playlist.id} handleClick={() => handleClick(playlist)}/>
               ))
             ) : !playlists && (
-              <div className="flex flex-col items-center">
-                <img src="../../../../../public/No music.png" alt="No music image" className="w-72 relative"/>
+              <div className="flex flex-col items-center relative">
+                <img src="../../../../../public/No music.png" alt="No music image" className="w-72"/>
                 <div className="absolute bottom-0">
                   NO MUSIC FOUND
                 </div>

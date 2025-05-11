@@ -15,7 +15,7 @@ export default function CenterContent() {
   const [loading, setLoading] = useState(false);
 
   const [newPlaylists, setNewPlaylists] = useState([]);
-
+  const [isAdded, setIsAdded] = useState(false);
   const searchSongs = async () => {
     if (!song || song.trim() === '') {
       setPlaylists();
@@ -61,9 +61,14 @@ export default function CenterContent() {
     const isDuplicate = newPlaylists.some(p => p.id === playlist.id);
 
     // if the id is 'not equal' to the playlist id, add the playlist to the newPlaylists
-    !isDuplicate && setNewPlaylists(prev => [playlist, ...prev]);
-    
-    // dont add the playlist to the newPlaylists if the id is equal to the playlists id
+    if (!isDuplicate) {
+      setNewPlaylists(prev => [playlist, ...prev]) 
+      setIsAdded(false);
+
+      // dont add the playlist to the newPlaylists if the id is equal to the playlists id
+    } else {
+      setIsAdded(true);
+    }
   }
 
   // remove button
@@ -79,9 +84,9 @@ export default function CenterContent() {
   return (
     <div className="text-white bg-slate-700 pb-10">
       <SearchBar searchSongs={searchSongs} handleSongs={handleSongs} enterKey={enterKey}/>
-      <div className="flex justify-center gap-10 pt-14 flex-wrap px-3">
+      <div className="flex justify-center gap-10 pt-14 flex-wrap px-3 max-[863px]:gap-20">
         <ListContent playlists={playlists} setSong={setSong} loading={loading} song={song} handleClick={handleClick}/>
-        <StoredContent newPlaylists={newPlaylists} handleRemove={handleRemove}/>
+        <StoredContent newPlaylists={newPlaylists} handleRemove={handleRemove} isAdded={isAdded}/>
       </div>
     </div>
   );
