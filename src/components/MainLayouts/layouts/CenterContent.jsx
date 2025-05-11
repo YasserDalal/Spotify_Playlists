@@ -57,9 +57,13 @@ export default function CenterContent() {
 
   // add button
   const handleClick = (playlist) => {
-    if(!newPlaylists.includes(playlist)) {
-      setNewPlaylists(prev => [...prev, playlist]);
-    }
+    // check if newPlayLists id is equal to the playlists id
+    const isDuplicate = newPlaylists.some(p => p.id === playlist.id);
+
+    // if the id is 'not equal' to the playlist id, add the playlist to the newPlaylists
+    !isDuplicate && setNewPlaylists(prev => [playlist, ...prev]);
+    
+    // dont add the playlist to the newPlaylists if the id is equal to the playlists id
   }
 
   // remove button
