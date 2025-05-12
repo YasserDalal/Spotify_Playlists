@@ -11,7 +11,7 @@ export default function StoredContent({newPlaylists, handleRemove, isAdded}) {
           </div>
           <div className="pt-10 max-h-[365px]">
             <ul className="flex flex-col overflow-y-auto max-h-[345px] custom-scrollbar  scroll-fade">
-                {newPlaylists.map((playlist) => (
+                {newPlaylists && newPlaylists.map((playlist) => (
                   <StoredListButton playlist={playlist} key={playlist.id} handleRemove={() => handleRemove(playlist)}/>
                 ))}    
             </ul>
