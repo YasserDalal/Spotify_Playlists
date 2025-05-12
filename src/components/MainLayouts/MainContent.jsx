@@ -8,13 +8,15 @@ import getToken from "./layouts/features/fetchData/getToken";
 import searchTrack from "./layouts/features/fetchData/searchTrack";
 
 import prioritizeTracks from "../../algorithm/searchAlgorithm";
+import saveStorage from "../localStorage/saveStorage";
+import getStorage from "../localStorage/getStorage";
 
 export default function MainContent() {
-  const [playlists, setPlaylists] = useState();
+  const [playlists, setPlaylists] = useState(getStorage('playlists') || undefined);
   const [song, setSong] = useState();
   const [loading, setLoading] = useState(false);
 
-  const [newPlaylists, setNewPlaylists] = useState([]);
+  const [newPlaylists, setNewPlaylists] = useState(getStorage('newPlaylists') || []);
   const [isAdded, setIsAdded] = useState(false);
 
   // search songs from Spotify
@@ -44,6 +46,7 @@ export default function MainContent() {
 
     setPlaylists(sortedData);
     setLoading(false);
+    saveStorage('playlists', sortedData);
   };
 
   // generate songs using 'Enter' key
@@ -83,7 +86,9 @@ export default function MainContent() {
   // check the state newPlaylists every time the state changes from handleClick
   useEffect(() => {
     console.log(newPlaylists);
+    saveStorage('newPlaylists', newPlaylists);
   }, [newPlaylists]);
+  
   return (
     <div className="w-auto h-screen">
       {/* TopBar (the one with the big spotify logo) */}
