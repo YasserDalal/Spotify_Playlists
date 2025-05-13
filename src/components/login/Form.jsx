@@ -5,9 +5,9 @@ import Username from './InputsandButtons/Username.jsx';
 import Password from './InputsandButtons/Password.jsx';
 import SubmitButton from './InputsandButtons/Submit.jsx';
 
-export default function Form({ handleLogin }) {
+export default function Form({  className, handleLogin }) {
   return (
-    <div className="flex justify-center items-center w-auto h-screen text-white">
+    <div className={className}>
       <div className="w-full h-auto flex  justify-center">
         <div className="flex flex-row
         min-[500px]:min-w-[475px] 

@@ -1,8 +1,9 @@
+
 import { Skeleton } from "../ui/skeleton"
 
-export default function LoadingCards(){
+export default function LoadingCards({ className }) {
   return (
-    <div className="flex items-center gap-4 py-5 pl-5">
+    <div className={className}>
       <div className="w-20 h-auto">
         <Skeleton className=" h-20 rounded-full" />
       </div>

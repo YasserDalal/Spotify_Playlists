@@ -1,8 +1,9 @@
+
 import Watermark from "./features/DetailsContent";
 
-export default function BottomContent() {
+export default function BottomContent({ className }) {
   return (
-    <div className="text-white bg-slate-900 w-full h-28">
+    <div className={className}>
       <Watermark className="pt-5 text-[14px] text-gray-400 opacity-60 select-none pointer-events-none z-50 text-center"/>
     </div>
   );

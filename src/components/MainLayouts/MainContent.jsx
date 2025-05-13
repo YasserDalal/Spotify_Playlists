@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 
 import TopBar from "./layouts/TopContent"
@@ -11,7 +12,7 @@ import prioritizeTracks from "../../algorithm/searchAlgorithm";
 import saveStorage from "../localStorage/saveStorage";
 import getStorage from "../localStorage/getStorage";
 
-export default function MainContent() {
+export default function MainContent({ className }) {
   const [playlists, setPlaylists] = useState(getStorage('playlists') || undefined);
   const [song, setSong] = useState();
   const [loading, setLoading] = useState(false);
@@ -90,15 +91,18 @@ export default function MainContent() {
   }, [newPlaylists]);
   
   return (
-    <div className="w-auto h-screen">
+    <div className={className}>
       {/* TopBar (the one with the big spotify logo) */}
-      <TopBar />
+      <TopBar className="text-white bg-gray-900"/>
       
       {/* CenterContent (the one with the search bar and the two lists) */}
-      <CenterContent searchSongs={searchSongs} handleSongs={handleSongs} enterKey={enterKey} handleClick={handleClick} handleRemove={handleRemove} isAdded={isAdded} loading={loading} playlists={playlists} newPlaylists={newPlaylists} setIsAdded={setIsAdded} setSong={setSong} setPlaylists={setPlaylists} setLoading={setLoading} setNewPlaylists={setNewPlaylists} song={song}/>
+      <CenterContent className="text-white bg-slate-700 pb-10"
+
+      searchSongs={searchSongs} handleSongs={handleSongs} enterKey={enterKey} handleClick={handleClick} handleRemove={handleRemove} isAdded={isAdded} loading={loading} playlists={playlists} 
+      newPlaylists={newPlaylists} setIsAdded={setIsAdded} setSong={setSong} setPlaylists={setPlaylists} setLoading={setLoading} setNewPlaylists={setNewPlaylists} song={song}/>
 
       {/* BottomContent (the one with the watermark at the bottom) */}
-      <BottomContent />
+      <BottomContent className="text-white bg-slate-900 w-full h-28"/>
     </div>
   )
 }

@@ -1,9 +1,10 @@
-import ListButton from "../../../buttons/ListButtons";
 
-import LoadingList from "@/components/loading UI/CardSkeleton";
-export default function ListContent({playlists, loading, song, handleClick}) {
+import ListButton from "../../../buttons/ListButtons";
+import LoadingCards from "@/components/loading UI/CardSkeleton";
+
+export default function ListContent({ className, playlists, loading, song, handleClick }) {
   return (
-    <div className="text-white bg-slate-900 max-[450px]:max-w-[90%] max-[450px]:min-w-[300px] min-w-[400px] max-w-[30%] w-full h-[600px] rounded-xl shadow-[0px_4px_5px_3px_black]">
+    <div className={className}>
       <div className="flex flex-col pl-6 pr-5 h-full">
         <div className="pl-5 pt-9">
           <h3 className="text-2xl font-bold ">RESULTS</h3>
@@ -12,17 +13,19 @@ export default function ListContent({playlists, loading, song, handleClick}) {
           <ul className="flex flex-col overflow-y-auto h-[80%] custom-scrollbar  scroll-fade">
              
             {loading && song ? (
+
               <div>
-                <LoadingList />
-                <LoadingList />
-                <LoadingList />
-                <LoadingList />
+                <LoadingCards className="flex items-center gap-4 py-5 pl-5"/>
+                <LoadingCards className="flex items-center gap-4 py-5 pl-5"/>
+                <LoadingCards className="flex items-center gap-4 py-5 pl-5"/>
+                <LoadingCards className="flex items-center gap-4 py-5 pl-5"/>
               </div>
-              // 
+
             ) : playlists ? (
               playlists.map((playlist) => (
-                <ListButton playlist={playlist} key={playlist.id} handleClick={() => handleClick(playlist)}/>
+                <ListButton className="p-2 rounded-lg" playlist={playlist} key={playlist.id} handleClick={() => handleClick(playlist)}/>
               ))
+
             ) : !playlists && (
               <div className="flex flex-col items-center relative">
                 <img src="../../../../../public/No music.png" alt="No music image" className="w-72"/>
