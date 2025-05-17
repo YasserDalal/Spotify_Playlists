@@ -9,7 +9,7 @@ import SaveToSpotifyButton from "../../../buttons/SaveToSpotifyButton";
 import StoredListButton from "../../../buttons/StoredListButtons";
 import PlaylistsRenameButton from "../../../buttons/playlistsRenameButton";
 
-export default function StoredContent({ className, newPlaylists, handleRemove, isAdded, handleSpotifyPlayLists, isEditing, handleRename, handleDoneRename, playlistName, handleChange, enterKeyRename }) {
+export default function StoredContent({ className, newPlaylists, handleSpotifyPlayLists, handleRemove, isAdded, isEditing, handleRename, handleDoneRename, playlistName, handleChange, enterKeyRename }) {
   console.log(playlistName)
   return (
     <div className={className}>
@@ -49,7 +49,7 @@ export default function StoredContent({ className, newPlaylists, handleRemove, i
             </ul>
           </div>
           <div>
-            <SaveToSpotifyButton className="px-10 pt-10"/>
+            <SaveToSpotifyButton className="px-10 pt-10" handleSpotifyPlayLists={handleSpotifyPlayLists}/>
           </div>
         </div>
       </div>
