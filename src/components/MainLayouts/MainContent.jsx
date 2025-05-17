@@ -14,7 +14,7 @@ import prioritizeTracks from "../../algorithm/searchAlgorithm";
 import saveStorage from "../localStorage/saveStorage";
 import removeStorage from "../localStorage/removeStorage";
 
-export default function MainContent({ className, playlists, setPlaylists, newPlaylists, setNewPlaylists, setIsAdded, isAdded, loading, setLoading, song, setSong, spotifyAdd, setSpotifyAdd, spotifyUrl, setSpotifyUrl, hasClicked, setHasClicked }) {
+export default function MainContent({ className, playlists, setPlaylists, newPlaylists, setNewPlaylists, setIsAdded, isAdded, loading, setLoading, song, setSong, spotifyAdd, setSpotifyAdd, spotifyUrl, setSpotifyUrl, hasClicked, setHasClicked, isEditing, setIsEditing, playlistName, setPlaylistName }) {
   // search songs from Spotify
   const searchSongs = async () => {
     if (!song || song.trim() === '') {
@@ -74,8 +74,9 @@ export default function MainContent({ className, playlists, setPlaylists, newPla
   }
   // add the songs in spotify
   const handleSpotifyPlayLists = async () => {
-    modifyPlayLists(newPlaylists, setSpotifyAdd, setSpotifyUrl, setHasClicked);
+    modifyPlayLists(newPlaylists, setSpotifyAdd, setSpotifyUrl, setHasClicked, playlistName);
     setHasClicked(true);
+    setIsEditing(false);
     /*
       step 1: npm run dev
       step 2: go to cmd and type -> ( ngrok http 5178 ) if it isn't 5178 remove the bash in terminal and type the ( npm run dev ) again
@@ -98,6 +99,27 @@ export default function MainContent({ className, playlists, setPlaylists, newPla
   const handleNavigateSpotify = () => {
     window.open(spotifyUrl, "_blank");
   }
+
+  const handleRename = async () => {
+    setIsEditing(true);
+  }
+  const handleDoneRename = () => {
+    setIsEditing(false);
+    if(playlistName === '') {
+      setPlaylistName('My PlayLists');
+    }
+  }
+  const handleChange = (e) => {
+    setPlaylistName(e.target.value);
+  };
+
+  const enterKeyRename = (e) => {
+    if (e.key === "Enter") {
+      handleDoneRename();
+    }
+  }
+  console.log(isEditing)
+
   // check the state newPlaylists every time the state changes from handleClick
   useEffect(() => {
     console.log(newPlaylists);
@@ -127,7 +149,14 @@ export default function MainContent({ className, playlists, setPlaylists, newPla
       playlists={playlists} 
       newPlaylists={newPlaylists} 
       song={song} 
-      spotifyAdd={spotifyAdd}/>
+      spotifyAdd={spotifyAdd}
+      isEditing={isEditing}
+      handleRename={handleRename}
+      handleDoneRename={handleDoneRename}
+      handleChange={handleChange}
+      playlistName={playlistName}
+      setPlaylistName={setPlaylistName}
+      enterKeyRename={enterKeyRename}/>
 
       {/* BottomContent (the one with the watermark at the bottom) */}
       <BottomContent className={`text-white bg-slate-900 w-full h-28 ${hasClicked && 'brightness-50'}`}/>
@@ -137,7 +166,8 @@ export default function MainContent({ className, playlists, setPlaylists, newPla
       handleModal={handleModal} 
       handleNavigateSpotify={handleNavigateSpotify} 
       spotifyAdd={spotifyAdd} 
-      hasClicked={hasClicked}/>
+      hasClicked={hasClicked}
+      playlistName={playlistName}/>
     </div>
   )
 }

@@ -15,25 +15,34 @@ export default function App() {
   const [spotifyAdd, setSpotifyAdd] = useState(false)
   const [spotifyUrl, setSpotifyUrl] = useState()
   const [hasClicked, setHasClicked] = useState(false);
+
+  const [isEditing, setIsEditing] = useState(false)
+  const [playlistName, setPlaylistName] = useState('My PlayLists');
   return (
     <>
-      <MainLayout isLoggedIn={isLoggedIn}
+      <MainLayout isLoggedIn={isLoggedIn}        
                   playlists={playlists} 
                   song={song} 
                   loading={loading} 
-                  newPlaylists={newPlaylists} 
+                  newPlaylists={newPlaylists}           // States
                   isAdded={isAdded} 
                   hasClicked={hasClicked}
                   spotifyAdd={spotifyAdd} 
                   spotifyUrl={spotifyUrl} 
+                  isEditing={isEditing}   
+                  playlistName={playlistName}         
+
                   setPlaylists={setPlaylists} 
                   setSong={setSong} 
                   setLoading={setLoading} 
                   setNewPlaylists={setNewPlaylists} 
-                  setIsAdded={setIsAdded} 
+                  setIsAdded={setIsAdded}               // Setters
                   setSpotifyAdd={setSpotifyAdd} 
                   setSpotifyUrl={setSpotifyUrl} 
                   setHasClicked={setHasClicked}
+                  setIsEditing={setIsEditing}
+                  setPlaylistName={setPlaylistName}
+
       />
     </>
   );
