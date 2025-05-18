@@ -12,12 +12,14 @@ export default function App() {
 
   const [newPlaylists, setNewPlaylists] = useState(getStorage('newPlaylists') || []);
   const [isAdded, setIsAdded] = useState(false);
-  const [spotifyAdd, setSpotifyAdd] = useState(false)
+  const [spotifyAdd, setSpotifyAdd] = useState(getStorage('spotifyAdd') || false);
   const [spotifyUrl, setSpotifyUrl] = useState()
-  const [hasClicked, setHasClicked] = useState(false);
+  const [hasClicked, setHasClicked] = useState(getStorage('hasClicked') || false);
+  const [successfullyLogin, setSuccessfullyLogin] = useState(getStorage('successfullyLogin') || false);
+  const [didClose, setDidClose] = useState(getStorage('didClose') || false);
 
-  const [isEditing, setIsEditing] = useState(false)
-  const [playlistName, setPlaylistName] = useState('My PlayLists');
+  const [isEditing, setIsEditing] = useState(getStorage('isEditing') || false);
+  const [playlistName, setPlaylistName] = useState(getStorage('playlistName') || 'My PlayLists');
   return (
     <>
       <MainLayout isLoggedIn={isLoggedIn}        
@@ -30,7 +32,9 @@ export default function App() {
                   spotifyAdd={spotifyAdd} 
                   spotifyUrl={spotifyUrl} 
                   isEditing={isEditing}   
-                  playlistName={playlistName}         
+                  playlistName={playlistName} 
+                  successfullyLogin={successfullyLogin} 
+                  didClose={didClose}       
 
                   setPlaylists={setPlaylists} 
                   setSong={setSong} 
@@ -42,6 +46,8 @@ export default function App() {
                   setHasClicked={setHasClicked}
                   setIsEditing={setIsEditing}
                   setPlaylistName={setPlaylistName}
+                  setSuccessfullyLogin={setSuccessfullyLogin}
+                  setDidClose={setDidClose}
 
       />
     </>

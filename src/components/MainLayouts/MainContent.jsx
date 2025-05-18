@@ -5,6 +5,7 @@ import TopBar from "./layouts/TopContent"
 import CenterContent from "./layouts/CenterContent"
 import BottomContent from "./layouts/BottomContent"
 import ModalContent from "./layouts/ModalContent";
+import LoginNotifContent from "./layouts/LoginNotifContent";
 
 import getToken from "./layouts/features/fetchData/getToken";
 import searchTrack from "./layouts/features/fetchData/searchTrack";
@@ -14,7 +15,7 @@ import prioritizeTracks from "../../algorithm/searchAlgorithm";
 import saveStorage from "../localStorage/saveStorage";
 import removeStorage from "../localStorage/removeStorage";
 
-export default function MainContent({ className, playlists, setPlaylists, newPlaylists, setNewPlaylists, setIsAdded, isAdded, loading, setLoading, song, setSong, spotifyAdd, setSpotifyAdd, spotifyUrl, setSpotifyUrl, hasClicked, setHasClicked, isEditing, setIsEditing, playlistName, setPlaylistName }) {
+export default function MainContent({ className, playlists, setPlaylists, newPlaylists, setNewPlaylists, setIsAdded, isAdded, loading, setLoading, song, setSong, spotifyAdd, setSpotifyAdd, spotifyUrl, setSpotifyUrl, hasClicked, setHasClicked, isEditing, setIsEditing, playlistName, setPlaylistName, successfullyLogin, setSuccessfullyLogin, didClose, setDidClose }) {
   // search songs from Spotify
   const searchSongs = async () => {
     if (!song || song.trim() === '') {
@@ -74,8 +75,7 @@ export default function MainContent({ className, playlists, setPlaylists, newPla
   }
   // add the songs in spotify
   const handleSpotifyPlayLists = async () => {
-    modifyPlayLists(newPlaylists, setSpotifyAdd, setSpotifyUrl, setHasClicked, playlistName);
-    setHasClicked(true);
+    modifyPlayLists(newPlaylists, setSpotifyAdd, setSpotifyUrl, setHasClicked, playlistName, setSuccessfullyLogin);
     setIsEditing(false);
     /*
       step 1: npm run dev
@@ -118,13 +118,31 @@ export default function MainContent({ className, playlists, setPlaylists, newPla
       handleDoneRename();
     }
   }
-  console.log(isEditing)
 
+  const closeNotif = () => {
+    setSuccessfullyLogin(false);
+    setDidClose(true);
+  }
   // check the state newPlaylists every time the state changes from handleClick
   useEffect(() => {
     console.log(newPlaylists);
     saveStorage('newPlaylists', newPlaylists);
-  }, [newPlaylists]);
+    saveStorage('playlistName', playlistName);
+    saveStorage('isEditing', isEditing);
+    saveStorage('spotifyAdd', spotifyAdd);
+    saveStorage('hasClicked', hasClicked);
+    const code = new URLSearchParams(window.location.search).get("code");
+    if (code && !didClose) {
+      console.log('yes')
+      setSuccessfullyLogin(true);
+      saveStorage('didClose', didClose);
+      saveStorage('successfullyLogin', successfullyLogin);
+    } else {
+      setSuccessfullyLogin(false);
+      saveStorage('didClose', didClose);
+      saveStorage('successfullyLogin', successfullyLogin);
+    }
+  }, [newPlaylists, playlistName, isEditing, spotifyAdd, hasClicked, didClose, successfullyLogin]);
   
   return (
     <div className={className}>
@@ -168,6 +186,8 @@ export default function MainContent({ className, playlists, setPlaylists, newPla
       spotifyAdd={spotifyAdd} 
       hasClicked={hasClicked}
       playlistName={playlistName}/>
+
+      <LoginNotifContent className={`text-white w-full fixed top-0 h-screen ${successfullyLogin ? 'flex' : 'hidden'} content-center justify-items-center z-[9000]`} closeNotif={closeNotif}/>
     </div>
   )
 }

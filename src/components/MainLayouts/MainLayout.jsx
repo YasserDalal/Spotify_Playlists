@@ -4,7 +4,7 @@ import MainContent from './MainContent.jsx'
 
 import saveStorage from '../localStorage/saveStorage.js';
 
-export default function MainLayout({ isLoggedIn, playlists, song, loading, newPlaylists, isAdded, hasClicked, spotifyAdd, spotifyUrl, setPlaylists, setSong, setLoading, setNewPlaylists, setIsAdded, setSpotifyAdd, setSpotifyUrl, setHasClicked, isEditing, setIsEditing, playlistName, setPlaylistName }) {
+export default function MainLayout({ isLoggedIn, playlists, song, loading, newPlaylists, isAdded, hasClicked, spotifyAdd, spotifyUrl, setPlaylists, setSong, setLoading, setNewPlaylists, setIsAdded, setSpotifyAdd, setSpotifyUrl, setHasClicked, isEditing, setIsEditing, playlistName, setPlaylistName, successfullyLogin, setSuccessfullyLogin, didClose, setDidClose }) {
 
   const handleLogin = () => {
     // the isLoggedIn state will be set to 'true'
@@ -24,6 +24,8 @@ export default function MainLayout({ isLoggedIn, playlists, song, loading, newPl
                       spotifyUrl={spotifyUrl}
                       isEditing={isEditing} 
                       playlistName={playlistName}
+                      successfullyLogin={successfullyLogin}
+                      didClose={didClose}
 
                       setPlaylists={setPlaylists} 
                       setSong={setSong} 
@@ -34,7 +36,9 @@ export default function MainLayout({ isLoggedIn, playlists, song, loading, newPl
                       setSpotifyUrl={setSpotifyUrl} 
                       setHasClicked={setHasClicked}
                       setIsEditing={setIsEditing}
-                      setPlaylistName={setPlaylistName}/> 
+                      setPlaylistName={setPlaylistName}
+                      setSuccessfullyLogin={setSuccessfullyLogin}
+                      setDidClose={setDidClose}/> 
                       : <Form className="flex justify-center items-center w-auto h-screen text-white" handleLogin={handleLogin} />}
     </div>
   );
