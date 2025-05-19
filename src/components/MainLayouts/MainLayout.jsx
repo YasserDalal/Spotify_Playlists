@@ -4,7 +4,7 @@ import MainContent from './MainContent.jsx'
 
 import saveStorage from '../localStorage/saveStorage.js';
 
-export default function MainLayout({ isLoggedIn, playlists, song, loading, newPlaylists, isAdded, hasClicked, spotifyAdd, spotifyUrl, setPlaylists, setSong, setLoading, setNewPlaylists, setIsAdded, setSpotifyAdd, setSpotifyUrl, setHasClicked, isEditing, setIsEditing, playlistName, setPlaylistName, successfullyLogin, setSuccessfullyLogin, didClose, setDidClose }) {
+export default function MainLayout({ isLoggedIn, playlists, song, loading, newPlaylists, isAdded, hasClicked, spotifyAdd, spotifyUrl, setPlaylists, setSong, setLoading, setNewPlaylists, setIsAdded, setSpotifyAdd, setSpotifyUrl, setHasClicked, isEditing, setIsEditing, playlistName, setPlaylistName, successfullyLogin, setSuccessfullyLogin, didClose, setDidClose, code, setCode, accessToken, setAccessToken, userDetails, setUserDetails, expiresIn, setExpiresIn }) {
 
   const handleLogin = () => {
     // the isLoggedIn state will be set to 'true'
@@ -26,6 +26,10 @@ export default function MainLayout({ isLoggedIn, playlists, song, loading, newPl
                       playlistName={playlistName}
                       successfullyLogin={successfullyLogin}
                       didClose={didClose}
+                      code={code}
+                      accessToken={accessToken}
+                      userDetails={userDetails}
+                      expiresIn={expiresIn}
 
                       setPlaylists={setPlaylists} 
                       setSong={setSong} 
@@ -38,7 +42,11 @@ export default function MainLayout({ isLoggedIn, playlists, song, loading, newPl
                       setIsEditing={setIsEditing}
                       setPlaylistName={setPlaylistName}
                       setSuccessfullyLogin={setSuccessfullyLogin}
-                      setDidClose={setDidClose}/> 
+                      setDidClose={setDidClose}
+                      setCode={setCode}
+                      setAccessToken={setAccessToken}
+                      setUserDetails={setUserDetails}
+                      setExpiresIn={setExpiresIn}/> 
                       : <Form className="flex justify-center items-center w-auto h-screen text-white" handleLogin={handleLogin} />}
     </div>
   );

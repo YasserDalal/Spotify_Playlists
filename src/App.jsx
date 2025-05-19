@@ -20,6 +20,11 @@ export default function App() {
 
   const [isEditing, setIsEditing] = useState(getStorage('isEditing') || false);
   const [playlistName, setPlaylistName] = useState(getStorage('playlistName') || 'My PlayLists');
+
+  const [code, setCode] = useState(getStorage('code') || '');
+  const [accessToken, setAccessToken] = useState(getStorage('accessToken') || '');
+  const [expiresIn, setExpiresIn] = useState(getStorage('expiresIn') || '');
+  const [userDetails, setUserDetails] = useState(getStorage('userDetails') || {});
   return (
     <>
       <MainLayout isLoggedIn={isLoggedIn}        
@@ -34,7 +39,12 @@ export default function App() {
                   isEditing={isEditing}   
                   playlistName={playlistName} 
                   successfullyLogin={successfullyLogin} 
-                  didClose={didClose}       
+                  didClose={didClose}  
+
+                  code={code}
+                  accessToken={accessToken}
+                  expiresIn={expiresIn}
+                  userDetails={userDetails}     
 
                   setPlaylists={setPlaylists} 
                   setSong={setSong} 
@@ -48,6 +58,11 @@ export default function App() {
                   setPlaylistName={setPlaylistName}
                   setSuccessfullyLogin={setSuccessfullyLogin}
                   setDidClose={setDidClose}
+
+                  setCode={setCode}
+                  setAccessToken={setAccessToken}
+                  setExpiresIn={setExpiresIn}
+                  setUserDetails={setUserDetails}
 
       />
     </>

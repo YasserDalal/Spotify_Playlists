@@ -15,7 +15,7 @@ import prioritizeTracks from "../../algorithm/searchAlgorithm";
 import saveStorage from "../localStorage/saveStorage";
 import removeStorage from "../localStorage/removeStorage";
 
-export default function MainContent({ className, playlists, setPlaylists, newPlaylists, setNewPlaylists, setIsAdded, isAdded, loading, setLoading, song, setSong, spotifyAdd, setSpotifyAdd, spotifyUrl, setSpotifyUrl, hasClicked, setHasClicked, isEditing, setIsEditing, playlistName, setPlaylistName, successfullyLogin, setSuccessfullyLogin, didClose, setDidClose }) {
+export default function MainContent({ className, playlists, setPlaylists, newPlaylists, setNewPlaylists, setIsAdded, isAdded, loading, setLoading, song, setSong, spotifyAdd, setSpotifyAdd, spotifyUrl, setSpotifyUrl, hasClicked, setHasClicked, isEditing, setIsEditing, playlistName, setPlaylistName, successfullyLogin, setSuccessfullyLogin, didClose, setDidClose, code, setCode, accessToken, setAccessToken, userDetails, setUserDetails, expiresIn, setExpiresIn }) {
   // search songs from Spotify
   const searchSongs = async () => {
     if (!song || song.trim() === '') {
