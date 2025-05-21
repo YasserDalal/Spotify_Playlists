@@ -10,12 +10,14 @@ import LoginNotifContent from "./layouts/LoginNotifContent";
 import getToken from "./layouts/features/fetchData/getToken";
 import searchTrack from "./layouts/features/fetchData/searchTrack";
 import modifyPlayLists from "./layouts/features/fetchData/modifyPlayLists";
+import getTokenForModify from "./layouts/features/fetchData/getTokenForModify";
+import getUserDetails from "./layouts/features/fetchData/getUserDetails";
 
 import prioritizeTracks from "../../algorithm/searchAlgorithm";
 import saveStorage from "../localStorage/saveStorage";
 import removeStorage from "../localStorage/removeStorage";
 
-export default function MainContent({ className, playlists, setPlaylists, newPlaylists, setNewPlaylists, setIsAdded, isAdded, loading, setLoading, song, setSong, spotifyAdd, setSpotifyAdd, spotifyUrl, setSpotifyUrl, hasClicked, setHasClicked, isEditing, setIsEditing, playlistName, setPlaylistName, successfullyLogin, setSuccessfullyLogin, didClose, setDidClose, code, setCode, accessToken, setAccessToken, userDetails, setUserDetails, expiresIn, setExpiresIn }) {
+export default function MainContent({ className, playlists, setPlaylists, newPlaylists, setNewPlaylists, setIsAdded, isAdded, loading, setLoading, song, setSong, spotifyAdd, setSpotifyAdd, spotifyUrl, setSpotifyUrl, hasClicked, setHasClicked, isEditing, setIsEditing, playlistName, setPlaylistName, successfullyLogin, setSuccessfullyLogin, didClose, setDidClose, codeVerifier, setCodeVerifier, token, setToken, userDetails, setUserDetails, expiresIn, setExpiresIn }) {
   // search songs from Spotify
   const searchSongs = async () => {
     if (!song || song.trim() === '') {
@@ -75,7 +77,7 @@ export default function MainContent({ className, playlists, setPlaylists, newPla
   }
   // add the songs in spotify
   const handleSpotifyPlayLists = async () => {
-    modifyPlayLists(newPlaylists, setSpotifyAdd, setSpotifyUrl, setHasClicked, playlistName, setSuccessfullyLogin);
+    modifyPlayLists(newPlaylists, setSpotifyAdd, setSpotifyUrl, setHasClicked, playlistName, setSuccessfullyLogin, token, setDidClose, setCodeVerifier, setToken, setUserDetails, setExpiresIn, userDetails);
     setIsEditing(false);
     /*
       step 1: npm run dev
@@ -126,23 +128,43 @@ export default function MainContent({ className, playlists, setPlaylists, newPla
   // check the state newPlaylists every time the state changes from handleClick
   useEffect(() => {
     console.log(newPlaylists);
+    console.log(token)
+    console.log(userDetails);
     saveStorage('newPlaylists', newPlaylists);
     saveStorage('playlistName', playlistName);
     saveStorage('isEditing', isEditing);
     saveStorage('spotifyAdd', spotifyAdd);
     saveStorage('hasClicked', hasClicked);
-    const code = new URLSearchParams(window.location.search).get("code");
-    if (code && !didClose) {
+    const codeParam = new URLSearchParams(window.location.search).get("code");
+    if (codeParam && !didClose) {
       console.log('yes')
       setSuccessfullyLogin(true);
       saveStorage('didClose', didClose);
       saveStorage('successfullyLogin', successfullyLogin);
+      console.log(codeParam)
     } else {
       setSuccessfullyLogin(false);
       saveStorage('didClose', didClose);
       saveStorage('successfullyLogin', successfullyLogin);
     }
   }, [newPlaylists, playlistName, isEditing, spotifyAdd, hasClicked, didClose, successfullyLogin]);
+
+  // kunin yung userDetails state tas irender yung data
+  useEffect(() => {
+    const codeParam = new URLSearchParams(window.location.search).get("code");
+    if(codeParam) {
+      if(!token) {
+        saveStorage('accessToken', token);
+        getTokenForModify(setToken);
+      }
+      saveStorage('codeVerifier', codeVerifier);
+      saveStorage('expiresIn', expiresIn);
+      saveStorage('userDetails', userDetails);
+      getUserDetails(setUserDetails, token);
+      console.log(token);
+      console.log(userDetails);
+    }
+  }, [token])
   
   return (
     <div className={className}>
@@ -187,7 +209,7 @@ export default function MainContent({ className, playlists, setPlaylists, newPla
       hasClicked={hasClicked}
       playlistName={playlistName}/>
 
-      <LoginNotifContent className={`text-white w-full fixed top-0 h-screen ${successfullyLogin ? 'flex' : 'hidden'} content-center justify-items-center z-[9000]`} closeNotif={closeNotif}/>
+      <LoginNotifContent className={`text-white w-full fixed top-0 h-screen ${successfullyLogin ? 'flex' : 'hidden'} items-center justify-center z-[9000]`} closeNotif={closeNotif} userDetails={userDetails}/>
     </div>
   )
 }
