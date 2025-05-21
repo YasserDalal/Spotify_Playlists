@@ -4,7 +4,7 @@ import MainContent from './MainContent.jsx'
 
 import saveStorage from '../localStorage/saveStorage.js';
 
-export default function MainLayout({ isLoggedIn, playlists, song, loading, newPlaylists, isAdded, hasClicked, spotifyAdd, spotifyUrl, setPlaylists, setSong, setLoading, setNewPlaylists, setIsAdded, setSpotifyAdd, setSpotifyUrl, setHasClicked, isEditing, setIsEditing, playlistName, setPlaylistName, successfullyLogin, setSuccessfullyLogin, didClose, setDidClose, code, setCode, accessToken, setAccessToken, userDetails, setUserDetails, expiresIn, setExpiresIn }) {
+export default function MainLayout({ isLoggedIn, playlists, song, loading, newPlaylists, isAdded, hasClicked, spotifyAdd, spotifyUrl, setPlaylists, setSong, setLoading, setNewPlaylists, setIsAdded, setSpotifyAdd, setSpotifyUrl, setHasClicked, isEditing, setIsEditing, playlistName, setPlaylistName, successfullyLogin, setSuccessfullyLogin, didClose, setDidClose, codeVerifier, setCodeVerifier, token, setToken, userDetails, setUserDetails, expiresIn, setExpiresIn }) {
 
   const handleLogin = () => {
     // the isLoggedIn state will be set to 'true'
@@ -26,8 +26,8 @@ export default function MainLayout({ isLoggedIn, playlists, song, loading, newPl
                       playlistName={playlistName}
                       successfullyLogin={successfullyLogin}
                       didClose={didClose}
-                      code={code}
-                      accessToken={accessToken}
+                      codeVerifier={codeVerifier}
+                      token={token}
                       userDetails={userDetails}
                       expiresIn={expiresIn}
 
@@ -43,8 +43,8 @@ export default function MainLayout({ isLoggedIn, playlists, song, loading, newPl
                       setPlaylistName={setPlaylistName}
                       setSuccessfullyLogin={setSuccessfullyLogin}
                       setDidClose={setDidClose}
-                      setCode={setCode}
-                      setAccessToken={setAccessToken}
+                      setCodeVerifier={setCodeVerifier}
+                      setToken={setToken}
                       setUserDetails={setUserDetails}
                       setExpiresIn={setExpiresIn}/> 
                       : <Form className="flex justify-center items-center w-auto h-screen text-white" handleLogin={handleLogin} />}

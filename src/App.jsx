@@ -1,11 +1,11 @@
 import MainLayout from "./components/MainLayouts/MainLayout";
 import { useState } from "react";
 import getStorage from "./components/localStorage/getStorage";
+import getValue from "./components/localStorage/getValue";
 
 export default function App() {
   // at first render this state will be 'null' so it will execute the else statement and set it to 'false'
   const [isLoggedIn, setIsLoggedIn] = useState(getStorage('isLoggedIn') || false);
-
   const [playlists, setPlaylists] = useState(getStorage('playlists') || undefined);
   const [song, setSong] = useState();
   const [loading, setLoading] = useState(false);
@@ -21,8 +21,8 @@ export default function App() {
   const [isEditing, setIsEditing] = useState(getStorage('isEditing') || false);
   const [playlistName, setPlaylistName] = useState(getStorage('playlistName') || 'My PlayLists');
 
-  const [code, setCode] = useState(getStorage('code') || '');
-  const [accessToken, setAccessToken] = useState(getStorage('accessToken') || '');
+  const [codeVerifier, setCodeVerifier] = useState(getStorage('codeVerifier') || '');
+  const [token, setToken] = useState(getValue('accessToken') || '');
   const [expiresIn, setExpiresIn] = useState(getStorage('expiresIn') || '');
   const [userDetails, setUserDetails] = useState(getStorage('userDetails') || {});
   return (
@@ -41,8 +41,8 @@ export default function App() {
                   successfullyLogin={successfullyLogin} 
                   didClose={didClose}  
 
-                  code={code}
-                  accessToken={accessToken}
+                  codeVerifier={codeVerifier}
+                  token={token}                          // states for OAuth
                   expiresIn={expiresIn}
                   userDetails={userDetails}     
 
@@ -50,7 +50,7 @@ export default function App() {
                   setSong={setSong} 
                   setLoading={setLoading} 
                   setNewPlaylists={setNewPlaylists} 
-                  setIsAdded={setIsAdded}               // Setters
+                  setIsAdded={setIsAdded}                // Setters
                   setSpotifyAdd={setSpotifyAdd} 
                   setSpotifyUrl={setSpotifyUrl} 
                   setHasClicked={setHasClicked}
@@ -59,11 +59,10 @@ export default function App() {
                   setSuccessfullyLogin={setSuccessfullyLogin}
                   setDidClose={setDidClose}
 
-                  setCode={setCode}
-                  setAccessToken={setAccessToken}
+                  setCodeVerifier={setCodeVerifier}
+                  setToken={setToken}                    // Setters for OAuth
                   setExpiresIn={setExpiresIn}
                   setUserDetails={setUserDetails}
-
       />
     </>
   );
