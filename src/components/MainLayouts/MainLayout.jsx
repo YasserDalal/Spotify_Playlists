@@ -4,7 +4,7 @@ import MainContent from './MainContent.jsx'
 
 import saveStorage from '../localStorage/saveStorage.js';
 
-export default function MainLayout({ isLoggedIn, playlists, song, loading, newPlaylists, isAdded, hasClicked, spotifyAdd, spotifyUrl, setPlaylists, setSong, setLoading, setNewPlaylists, setIsAdded, setSpotifyAdd, setSpotifyUrl, setHasClicked, isEditing, setIsEditing, playlistName, setPlaylistName, successfullyLogin, setSuccessfullyLogin, didClose, setDidClose, codeVerifier, setCodeVerifier, token, setToken, userDetails, setUserDetails, expiresIn, setExpiresIn }) {
+export default function MainLayout({ isLoggedIn, playlists, song, loading, newPlaylists, isAdded, hasClicked, spotifyAdd, spotifyUrl, setPlaylists, setSong, setLoading, setNewPlaylists, setIsAdded, setSpotifyAdd, setSpotifyUrl, setHasClicked, isEditing, setIsEditing, playlistName, setPlaylistName, successfullyLogin, setSuccessfullyLogin, didClose, setDidClose, codeVerifier, setCodeVerifier, token, setToken, userDetails, setUserDetails, expiresIn, setExpiresIn, revealLists, setRevealLists }) {
 
   const handleLogin = () => {
     // the isLoggedIn state will be set to 'true'
@@ -30,6 +30,7 @@ export default function MainLayout({ isLoggedIn, playlists, song, loading, newPl
                       token={token}
                       userDetails={userDetails}
                       expiresIn={expiresIn}
+                      revealLists={revealLists}
 
                       setPlaylists={setPlaylists} 
                       setSong={setSong} 
@@ -46,7 +47,8 @@ export default function MainLayout({ isLoggedIn, playlists, song, loading, newPl
                       setCodeVerifier={setCodeVerifier}
                       setToken={setToken}
                       setUserDetails={setUserDetails}
-                      setExpiresIn={setExpiresIn}/> 
+                      setExpiresIn={setExpiresIn}
+                      setRevealLists={setRevealLists}/> 
                       : <Form className="flex justify-center items-center w-auto h-screen text-white" handleLogin={handleLogin} />}
     </div>
   );

@@ -16,8 +16,10 @@ import getUserDetails from "./layouts/features/fetchData/getUserDetails";
 import prioritizeTracks from "../../algorithm/searchAlgorithm";
 import saveStorage from "../localStorage/saveStorage";
 import removeStorage from "../localStorage/removeStorage";
+import removeAllData from "../localStorage/removeAllData";
+import ProfileLists from "./layouts/features/ProfileLists";
 
-export default function MainContent({ className, playlists, setPlaylists, newPlaylists, setNewPlaylists, setIsAdded, isAdded, loading, setLoading, song, setSong, spotifyAdd, setSpotifyAdd, spotifyUrl, setSpotifyUrl, hasClicked, setHasClicked, isEditing, setIsEditing, playlistName, setPlaylistName, successfullyLogin, setSuccessfullyLogin, didClose, setDidClose, codeVerifier, setCodeVerifier, token, setToken, userDetails, setUserDetails, expiresIn, setExpiresIn }) {
+export default function MainContent({ className, playlists, setPlaylists, newPlaylists, setNewPlaylists, setIsAdded, isAdded, loading, setLoading, song, setSong, spotifyAdd, setSpotifyAdd, spotifyUrl, setSpotifyUrl, hasClicked, setHasClicked, isEditing, setIsEditing, playlistName, setPlaylistName, successfullyLogin, setSuccessfullyLogin, didClose, setDidClose, codeVerifier, setCodeVerifier, token, setToken, userDetails, setUserDetails, expiresIn, setExpiresIn, revealLists, setRevealLists }) {
   // search songs from Spotify
   const searchSongs = async () => {
     if (!song || song.trim() === '') {
@@ -79,16 +81,6 @@ export default function MainContent({ className, playlists, setPlaylists, newPla
   const handleSpotifyPlayLists = async () => {
     modifyPlayLists(newPlaylists, setSpotifyAdd, setSpotifyUrl, setHasClicked, playlistName, setSuccessfullyLogin, token, setDidClose, setCodeVerifier, setToken, setUserDetails, setExpiresIn, userDetails);
     setIsEditing(false);
-    /*
-      step 1: npm run dev
-      step 2: go to cmd and type -> ( ngrok http 5178 ) if it isn't 5178 remove the bash in terminal and type the ( npm run dev ) again
-      step 3: go to the ngrok dashboard and copy the url (the one with the https)
-      step 4: go to the spotify developer account and add the ngrok url in the redirect uris, add /callback at the end of the url and add the actual without the /callback
-      step 5: click save
-      step 6: go to getTokenForModify() and replace redirectUri variable with the actual url of the ngrok url
-      step 7: go to vite.config.js find the allowedHostproperty and replace the first value of the array with ngrok url ( !!! DONT ADD THE ( 'HTTPS:// ) add only the middle part without the https)')
-      step 8: paste the http://localHost:5178 in the browser
-    */
   };
   // close modal
   const handleModal = () => {
@@ -99,7 +91,7 @@ export default function MainContent({ className, playlists, setPlaylists, newPla
   }
   // navigate to spotify
   const handleNavigateSpotify = () => {
-    window.open(spotifyUrl, "_blank");
+    window.open(userDetails.external_urls.spotify, "_blank");
   }
 
   const handleRename = async () => {
@@ -124,6 +116,21 @@ export default function MainContent({ className, playlists, setPlaylists, newPla
   const closeNotif = () => {
     setSuccessfullyLogin(false);
     setDidClose(true);
+  }
+
+  const handleLogout = () => {
+    removeAllData();
+    window.location.reload()
+  }
+
+  const handleReveal = () => {
+    if(revealLists) {
+      saveStorage('revealLists', false);
+      setRevealLists(false);
+      return;
+    }
+    saveStorage('revealLists', true);
+    setRevealLists(true);
   }
   // check the state newPlaylists every time the state changes from handleClick
   useEffect(() => {
@@ -166,11 +173,13 @@ export default function MainContent({ className, playlists, setPlaylists, newPla
     }
   }, [token])
   
+  useEffect(() => {
+    saveStorage('revealLists', revealLists);
+  }, [revealLists])
   return (
     <div className={className}>
       {/* TopBar (the one with the big spotify logo) */}
-      <TopBar className={`text-white bg-gray-900 ${hasClicked && 'brightness-50'}`}/>
-      
+      <TopBar className={`text-white flex fixed left-0 right-0 justify-between bg-gray-900 z-50 ${hasClicked && 'brightness-50'}`} userDetails={userDetails} revealLists={revealLists} handleLogout={handleLogout} handleReveal={handleReveal} handleNavigateSpotify={handleNavigateSpotify}/>
       {/* CenterContent (the one with the search bar and the two lists) */}
       <CenterContent className={`text-white bg-slate-700 pb-10 ${hasClicked && 'brightness-50'}`}
       searchSongs={searchSongs} 

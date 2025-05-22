@@ -25,6 +25,8 @@ export default function App() {
   const [token, setToken] = useState(getValue('accessToken') || '');
   const [expiresIn, setExpiresIn] = useState(getStorage('expiresIn') || '');
   const [userDetails, setUserDetails] = useState(getStorage('userDetails') || {});
+
+  const [revealLists, setRevealLists] = useState(getValue('reveal') || false)
   return (
     <>
       <MainLayout isLoggedIn={isLoggedIn}        
@@ -39,7 +41,8 @@ export default function App() {
                   isEditing={isEditing}   
                   playlistName={playlistName} 
                   successfullyLogin={successfullyLogin} 
-                  didClose={didClose}  
+                  didClose={didClose} 
+                  revealLists={revealLists} 
 
                   codeVerifier={codeVerifier}
                   token={token}                          // states for OAuth
@@ -58,6 +61,7 @@ export default function App() {
                   setPlaylistName={setPlaylistName}
                   setSuccessfullyLogin={setSuccessfullyLogin}
                   setDidClose={setDidClose}
+                  setRevealLists={setRevealLists}
 
                   setCodeVerifier={setCodeVerifier}
                   setToken={setToken}                    // Setters for OAuth
