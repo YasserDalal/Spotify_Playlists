@@ -3,20 +3,18 @@ import { useState } from "react";
 import getStorage from "./components/localStorage/getStorage";
 import getValue from "./components/localStorage/getValue";
 
-export default function App() {
-  // at first render this state will be 'null' so it will execute the else statement and set it to 'false'
-  const [isLoggedIn, setIsLoggedIn] = useState(getStorage('isLoggedIn') || false);
-  const [playlists, setPlaylists] = useState(getStorage('playlists') || undefined);
-  const [song, setSong] = useState();
-  const [loading, setLoading] = useState(false);
+import useStatesForSearching from "./components/states/statesForSearching";
+import useStatesForCreatingPlaylists from "./components/states/statesForCreatingPlaylists.";
+import useStatesOfSpotify from "./components/states/statesForSpotifyAdd";
+import useStatesForLoggingInSpotify from "./components/states/statesForLoggingInSpotify";
 
-  const [newPlaylists, setNewPlaylists] = useState(getStorage('newPlaylists') || []);
-  const [isAdded, setIsAdded] = useState(false);
-  const [spotifyAdd, setSpotifyAdd] = useState(getStorage('spotifyAdd') || false);
-  const [spotifyUrl, setSpotifyUrl] = useState()
-  const [hasClicked, setHasClicked] = useState(getStorage('hasClicked') || false);
-  const [successfullyLogin, setSuccessfullyLogin] = useState(getStorage('successfullyLogin') || false);
-  const [didClose, setDidClose] = useState(getStorage('didClose') || false);
+export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(getStorage('isLoggedIn') || false);
+  
+  const { song, setSong, loading, setLoading, playlists, setPlaylists } = useStatesForSearching();
+  const { newPlaylists, setNewPlaylists, isAdded, setIsAdded } = useStatesForCreatingPlaylists();
+  const { spotifyAdd, setSpotifyAdd, hasClicked, setHasClicked } = useStatesOfSpotify();
+  const { successfullyLogin, setSuccessfullyLogin, didClose, setDidClose } = useStatesForLoggingInSpotify();
 
   const [isEditing, setIsEditing] = useState(getStorage('isEditing') || false);
   const [playlistName, setPlaylistName] = useState(getStorage('playlistName') || 'My PlayLists');
@@ -37,7 +35,6 @@ export default function App() {
                   isAdded={isAdded} 
                   hasClicked={hasClicked}
                   spotifyAdd={spotifyAdd} 
-                  spotifyUrl={spotifyUrl} 
                   isEditing={isEditing}   
                   playlistName={playlistName} 
                   successfullyLogin={successfullyLogin} 
@@ -55,7 +52,6 @@ export default function App() {
                   setNewPlaylists={setNewPlaylists} 
                   setIsAdded={setIsAdded}                // Setters
                   setSpotifyAdd={setSpotifyAdd} 
-                  setSpotifyUrl={setSpotifyUrl} 
                   setHasClicked={setHasClicked}
                   setIsEditing={setIsEditing}
                   setPlaylistName={setPlaylistName}
