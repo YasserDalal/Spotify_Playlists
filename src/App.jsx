@@ -1,34 +1,27 @@
 import MainLayout from "./components/MainLayouts/MainLayout";
-import { useState } from "react";
-import getStorage from "./components/localStorage/getStorage";
-import getValue from "./components/localStorage/getValue";
 
 import useStatesForSearching from "./components/states/statesForSearching";
 import useStatesForCreatingPlaylists from "./components/states/statesForCreatingPlaylists.";
 import useStatesOfSpotify from "./components/states/statesForSpotifyAdd";
 import useStatesForLoggingInSpotify from "./components/states/statesForLoggingInSpotify";
+import useStatesForPlaylistsInSpotify from "./components/states/statesForPlaylistsInSpotify";
+import useStatesForUserData from "./components/states/statesForUserData";
+import useStatesForEditingExpiration from "./components/states/statesForEditing&Expiration";
+import useStatesForRevealingLists from "./components/states/statesForRevealingLists";
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(getStorage('isLoggedIn') || false);
-  
   const { song, setSong, loading, setLoading, playlists, setPlaylists } = useStatesForSearching();
   const { newPlaylists, setNewPlaylists, isAdded, setIsAdded } = useStatesForCreatingPlaylists();
   const { spotifyAdd, setSpotifyAdd, hasClicked, setHasClicked } = useStatesOfSpotify();
   const { successfullyLogin, setSuccessfullyLogin, didClose, setDidClose } = useStatesForLoggingInSpotify();
+  const { token, setToken, codeVerifier, setCodeVerifier } = useStatesForPlaylistsInSpotify();
+  const { userDetails, setUserDetails, playlistName, setPlaylistName } = useStatesForUserData();
+  const { isEditing, setIsEditing, expiresIn, setExpiresIn } = useStatesForEditingExpiration();
+  const { revealLists, setRevealLists } = useStatesForRevealingLists();
 
-  const [isEditing, setIsEditing] = useState(getStorage('isEditing') || false);
-  const [playlistName, setPlaylistName] = useState(getStorage('playlistName') || 'My PlayLists');
-
-  const [codeVerifier, setCodeVerifier] = useState(getStorage('codeVerifier') || '');
-  const [token, setToken] = useState(getValue('accessToken') || '');
-  const [expiresIn, setExpiresIn] = useState(getStorage('expiresIn') || '');
-  const [userDetails, setUserDetails] = useState(getStorage('userDetails') || {});
-
-  const [revealLists, setRevealLists] = useState(getValue('reveal') || false)
   return (
     <>
-      <MainLayout isLoggedIn={isLoggedIn}        
-                  playlists={playlists} 
+      <MainLayout playlists={playlists} 
                   song={song} 
                   loading={loading} 
                   newPlaylists={newPlaylists}           // States
