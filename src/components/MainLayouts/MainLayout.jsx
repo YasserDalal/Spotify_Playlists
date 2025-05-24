@@ -1,55 +1,44 @@
 
-import Form from '../login/Form.jsx'
 import MainContent from './MainContent.jsx'
 
-import saveStorage from '../localStorage/saveStorage.js';
-
-export default function MainLayout({ isLoggedIn, playlists, song, loading, newPlaylists, isAdded, hasClicked, spotifyAdd, spotifyUrl, setPlaylists, setSong, setLoading, setNewPlaylists, setIsAdded, setSpotifyAdd, setSpotifyUrl, setHasClicked, isEditing, setIsEditing, playlistName, setPlaylistName, successfullyLogin, setSuccessfullyLogin, didClose, setDidClose, codeVerifier, setCodeVerifier, token, setToken, userDetails, setUserDetails, expiresIn, setExpiresIn, revealLists, setRevealLists }) {
-
-  const handleLogin = () => {
-    // the isLoggedIn state will be set to 'true'
-    saveStorage('isLoggedIn', true);
-  }
+export default function MainLayout({ playlists, song, loading, newPlaylists, isAdded, hasClicked, spotifyAdd, setPlaylists, setSong, setLoading, setNewPlaylists, setIsAdded, setSpotifyAdd, setHasClicked, isEditing, setIsEditing, playlistName, setPlaylistName, successfullyLogin, setSuccessfullyLogin, didClose, setDidClose, codeVerifier, setCodeVerifier, token, setToken, userDetails, setUserDetails, expiresIn, setExpiresIn, revealLists, setRevealLists }) {
 
   return (
     <div className='w-full h-full bg-slate-900'>
-      {isLoggedIn ? <MainContent className="w-auto h-screen" 
-                      playlists={playlists} 
-                      song={song} 
-                      loading={loading} 
-                      newPlaylists={newPlaylists} 
-                      isAdded={isAdded} 
-                      hasClicked={hasClicked} 
-                      spotifyAdd={spotifyAdd} 
-                      spotifyUrl={spotifyUrl}
-                      isEditing={isEditing} 
-                      playlistName={playlistName}
-                      successfullyLogin={successfullyLogin}
-                      didClose={didClose}
-                      codeVerifier={codeVerifier}
-                      token={token}
-                      userDetails={userDetails}
-                      expiresIn={expiresIn}
-                      revealLists={revealLists}
+      <MainContent  className="w-auto h-screen" 
+                    playlists={playlists} 
+                    song={song} 
+                    loading={loading} 
+                    newPlaylists={newPlaylists} 
+                    isAdded={isAdded} 
+                    hasClicked={hasClicked} 
+                    spotifyAdd={spotifyAdd} 
+                    isEditing={isEditing} 
+                    playlistName={playlistName}
+                    successfullyLogin={successfullyLogin}
+                    didClose={didClose}
+                    codeVerifier={codeVerifier}
+                    token={token}
+                    userDetails={userDetails}
+                    expiresIn={expiresIn}
+                    revealLists={revealLists}
 
-                      setPlaylists={setPlaylists} 
-                      setSong={setSong} 
-                      setLoading={setLoading} 
-                      setNewPlaylists={setNewPlaylists} 
-                      setIsAdded={setIsAdded} 
-                      setSpotifyAdd={setSpotifyAdd} 
-                      setSpotifyUrl={setSpotifyUrl} 
-                      setHasClicked={setHasClicked}
-                      setIsEditing={setIsEditing}
-                      setPlaylistName={setPlaylistName}
-                      setSuccessfullyLogin={setSuccessfullyLogin}
-                      setDidClose={setDidClose}
-                      setCodeVerifier={setCodeVerifier}
-                      setToken={setToken}
-                      setUserDetails={setUserDetails}
-                      setExpiresIn={setExpiresIn}
-                      setRevealLists={setRevealLists}/> 
-                      : <Form className="flex justify-center items-center w-auto h-screen text-white" handleLogin={handleLogin} />}
+                    setPlaylists={setPlaylists} 
+                    setSong={setSong} 
+                    setLoading={setLoading} 
+                    setNewPlaylists={setNewPlaylists} 
+                    setIsAdded={setIsAdded} 
+                    setSpotifyAdd={setSpotifyAdd} 
+                    setHasClicked={setHasClicked}
+                    setIsEditing={setIsEditing}
+                    setPlaylistName={setPlaylistName}
+                    setSuccessfullyLogin={setSuccessfullyLogin}
+                    setDidClose={setDidClose}
+                    setCodeVerifier={setCodeVerifier}
+                    setToken={setToken}
+                    setUserDetails={setUserDetails}
+                    setExpiresIn={setExpiresIn}
+                    setRevealLists={setRevealLists}/>           
     </div>
   );
 
