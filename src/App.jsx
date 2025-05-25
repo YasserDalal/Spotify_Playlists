@@ -1,5 +1,6 @@
+// child component
 import MainLayout from "./components/MainLayouts/MainLayout";
-
+// states
 import useStatesForSearching from "./components/states/statesForSearching";
 import useStatesForCreatingPlaylists from "./components/states/statesForCreatingPlaylists.";
 import useStatesOfSpotify from "./components/states/statesForSpotifyAdd";
@@ -8,7 +9,8 @@ import useStatesForPlaylistsInSpotify from "./components/states/statesForPlaylis
 import useStatesForUserData from "./components/states/statesForUserData";
 import useStatesForEditingExpiration from "./components/states/statesForEditing&Expiration";
 import useStatesForRevealingLists from "./components/states/statesForRevealingLists";
-
+import useStatesForLoggingOutSpotify from "./components/states/statesForLoggingOut";
+// root component
 export default function App() {
   const { song, setSong, loading, setLoading, playlists, setPlaylists } = useStatesForSearching();
   const { newPlaylists, setNewPlaylists, isAdded, setIsAdded } = useStatesForCreatingPlaylists();
@@ -18,6 +20,7 @@ export default function App() {
   const { userDetails, setUserDetails, playlistName, setPlaylistName } = useStatesForUserData();
   const { isEditing, setIsEditing, expiresIn, setExpiresIn } = useStatesForEditingExpiration();
   const { revealLists, setRevealLists } = useStatesForRevealingLists();
+  const { successfullyLogout, setSuccessfullyLogout, didClickLogout, setDidClickLogout } = useStatesForLoggingOutSpotify();
 
   return (
     <>
@@ -32,7 +35,9 @@ export default function App() {
                   playlistName={playlistName} 
                   successfullyLogin={successfullyLogin} 
                   didClose={didClose} 
-                  revealLists={revealLists} 
+                  revealLists={revealLists}
+                  successfullyLogout={successfullyLogout} 
+                  didClickLogout={didClickLogout}
 
                   codeVerifier={codeVerifier}
                   token={token}                          // states for OAuth
@@ -51,12 +56,13 @@ export default function App() {
                   setSuccessfullyLogin={setSuccessfullyLogin}
                   setDidClose={setDidClose}
                   setRevealLists={setRevealLists}
+                  setSuccessfullyLogout={setSuccessfullyLogout}
+                  setDidClickLogout={setDidClickLogout}
 
                   setCodeVerifier={setCodeVerifier}
                   setToken={setToken}                    // Setters for OAuth
                   setExpiresIn={setExpiresIn}
-                  setUserDetails={setUserDetails}
-      />
+                  setUserDetails={setUserDetails}/>
     </>
   );
 }
