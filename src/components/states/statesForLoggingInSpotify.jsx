@@ -1,7 +1,7 @@
 
 import { useState } from "react";
+import getValue from "../localStorage/getStorage";
 import getStorage from "../localStorage/getStorage";
-import getValue from "../localStorage/getValue";
 
 export default function useStatesForLoggingInSpotify(){
   const [successfullyLogin, setSuccessfullyLogin] = useState(getValue('successfullyLogin') || false);

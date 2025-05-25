@@ -1,10 +1,10 @@
 
-export default function SongTracks({ className, newPlaylists }) {
+export default function SongTracks({ className, newPlaylists, playlistName }) {
   return (
     <div className={className}>
         <div className='text-center text-[15px]'>Your Tracks</div>
         <div className='flex flex-col pt-5'>
-          <div className='text-2xl pb-4 border-l-[1px] border-gray-400 pl-2'>My PlayLists</div>
+          <div className='text-2xl pb-4 border-l-[1px] border-gray-400 pl-2'>{playlistName}</div>
           <div className='border-l-[1px] border-gray-400 pl-2'>
             <div className=''>
               <ul className='flex flex-col overflow-y-auto max-h-[285px] custom-scrollbar  scroll-fade'>
