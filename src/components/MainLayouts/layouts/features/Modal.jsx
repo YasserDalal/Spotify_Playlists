@@ -8,7 +8,7 @@ import ModalButtonsContainer from './modalContainers/buttonContainer';
 
 import LoadingScreen from '@/components/loading UI/LoadingScreen';
 
-export default function Modal({ className, newPlaylists, handleModal, handleNavigateSpotify, spotifyAdd, playlistName }) {
+export default function Modal({ className, newPlaylists, handleModal, handleNavigateSpotify, spotifyAdd, playlistName, setSpotifyAdd, setHasClicked, setNewPlaylists, userDetails }) {
   return (
     <div className={className}>
       {!spotifyAdd ?  <LoadingScreen className='flex flex-col justify-center items-center h-[610px]' 
@@ -27,7 +27,11 @@ export default function Modal({ className, newPlaylists, handleModal, handleNavi
             handleNavigateSpotify={handleNavigateSpotify} 
             handleModal={handleModal} 
             FontAwesomeIcon={FontAwesomeIcon} 
-            faSpotify={faSpotify}/>
+            faSpotify={faSpotify}
+            setSpotifyAdd={setSpotifyAdd} 
+            setHasClicked={setHasClicked} 
+            setNewPlaylists={setNewPlaylists}
+            userDetails={userDetails}/>
           </div>
         )
       }
