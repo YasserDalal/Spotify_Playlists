@@ -1,4 +1,4 @@
-
+// add songs in the tracks
 export default function handleClick(playlist, newPlaylists, setNewPlaylists, setIsAdded) {
   // check if newPlayLists id is equal to the playlists id
   const isDuplicate = newPlaylists.some(p => p.id === playlist.id);

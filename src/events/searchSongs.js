@@ -1,9 +1,9 @@
-import  searchTrack  from '../components/MainLayouts/layouts/features/fetchData/searchTrack';
-import  getToken  from '../components/MainLayouts/layouts/features/fetchData/getToken';
-import  prioritizeTracks  from '../algorithm/searchAlgorithm';
+import searchTrack from '../components/MainLayouts/layouts/features/fetchData/searchTrack';
+import getToken from '../components/MainLayouts/layouts/features/fetchData/getToken';
+import prioritizeTracks from '../algorithm/searchAlgorithm';
 
 import saveStorage from '../components/localStorage/saveStorage';
-
+// search for songs in the spotify API
 export default async function searchSongs(song, setLoading, setPlaylists) {
   if (!song || song.trim() === '') {
     setPlaylists();
@@ -13,9 +13,7 @@ export default async function searchSongs(song, setLoading, setPlaylists) {
   setPlaylists();
   const accessToken = await getToken();
   const data = await searchTrack(accessToken, song);
-
   const sortedData = prioritizeTracks(data, song);
-
   const preloadImages = sortedData.map((track) => {
     return new Promise((resolve) => {
       const img = new Image();
