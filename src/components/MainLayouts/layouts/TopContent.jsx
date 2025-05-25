@@ -7,7 +7,7 @@ import ProfileButton from '@/components/buttons/ProfileButton';
 import { Skeleton } from '@/components/ui/skeleton';
 import ProfileLists from './features/ProfileLists';
 
-export default function TopBar({ className, userDetails, handleLogout, handleReveal, revealLists, handleNavigateSpotify }) {
+export default function TopBar({ className, userDetails, handleLogout, handleReveal, revealLists, handleNavigateSpotify, setRevealLists, setSuccessfullyLogout, setDidClickLogout }) {
   return (
     <div className={className}>
       <div className='flex w-full justify-between z-50 bg-gray-900'>
@@ -21,12 +21,12 @@ export default function TopBar({ className, userDetails, handleLogout, handleRev
           {userDetails.display_name ? 
           ( 
           <div>
-            <ProfileButton className='flex flex-col relative' userDetails={userDetails} handleLogout={handleLogout} handleReveal={handleReveal} revealLists={revealLists}/> 
+            <ProfileButton className='flex flex-col relative' userDetails={userDetails} handleLogout={handleLogout} handleReveal={handleReveal} revealLists={revealLists} setRevealLists={setRevealLists}/> 
           </div>
           ) : <Skeleton className=" h-20 rounded-full" />}
         </div>
       </div>
-      <ProfileLists className={`absolute right-10 rounded-bl-md rounded-br-md  transition-all duration-200 w-[210px]  ${revealLists ? '-bottom-28 opacity-100': '-bottom-0 opacity-0'}`}handleReveal={handleReveal} handleLogout={handleLogout} FontAwesomeIcon={FontAwesomeIcon} faPowerOff={faPowerOff} faSpotify={faSpotify} handleNavigateSpotify={handleNavigateSpotify}/>
+      <ProfileLists className={`absolute right-10 rounded-bl-md rounded-br-md  transition-all duration-200 w-[210px]  ${revealLists ? '-bottom-28 opacity-100': '-bottom-0 opacity-0'}`}handleReveal={handleReveal} handleLogout={handleLogout} FontAwesomeIcon={FontAwesomeIcon} faPowerOff={faPowerOff} faSpotify={faSpotify} handleNavigateSpotify={handleNavigateSpotify} userDetails={userDetails} setDidClickLogout={setDidClickLogout} setSuccessfullyLogout={setSuccessfullyLogout}/>
     </div>
   );
 }
