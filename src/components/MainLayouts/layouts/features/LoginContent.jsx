@@ -1,15 +1,14 @@
 
 import CloseNotif from "@/components/buttons/loginNotif/closeButton";
-import getStorage from "@/components/localStorage/getStorage";
 
 import LoadingToken from "@/components/loading UI/LoadingToken";
 
-export default function LoginContent({ className, closeNotif, FontAwesomeIcon, faSpotify, userDetails }) {
+export default function LoginContent({ className, closeNotif, FontAwesomeIcon, faSpotify, userDetails, setSuccessfullyLogin, setDidClose }) {
   return (
     <div className={className}>
         {userDetails.display_name ? ( 
         <>
-        <CloseNotif className="absolute top-2 right-2"  closeNotif={closeNotif}/>
+        <CloseNotif className="absolute top-2 right-2"  closeNotif={closeNotif} setSuccessfullyLogin={setSuccessfullyLogin} setDidClose={setDidClose}/>
         <div className="flex flex-col items-center gap-5 ">
           <div>
             <FontAwesomeIcon icon={faSpotify} size="4x" className="text-[#28d7a3] p-4" />
