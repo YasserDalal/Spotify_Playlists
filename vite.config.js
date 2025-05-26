@@ -14,7 +14,7 @@ export default defineConfig({
   server: {
     port: 5178, // Baguhin ito sa port na nais mo
     allowedHosts: [
-      'revised-girlfriend-same-designed.trycloudflare.com', // Add your Ngrok URL here
+      'yasserdalal.github.io/Spotify_Playlists/', // Add your Ngrok URL here
       'localhost', // If you want to keep localhost as an allowed host
     ],
   },
