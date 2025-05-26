@@ -25,9 +25,9 @@ export default function MainContent({ className, playlists, setPlaylists, newPla
   return (
     <div className={className}>
       {/* TopBar (the one with the big spotify logo) */}
-      <TopBar className={`text-white flex fixed left-0 right-0 justify-between bg-gray-900 z-50 ${hasClicked || successfullyLogin && 'brightness-50'}`} userDetails={userDetails} revealLists={revealLists} handleLogout={handleLogout} handleReveal={handleReveal} handleNavigateSpotify={handleNavigateSpotify} setRevealLists={setRevealLists} setSuccessfullyLogout={setSuccessfullyLogout} setDidClickLogout={setDidClickLogout}/>
+      <TopBar className={`text-white flex fixed left-0 right-0 justify-between bg-gray-900 z-50 ${(hasClicked || successfullyLogin) && 'brightness-50'}`} userDetails={userDetails} revealLists={revealLists} handleLogout={handleLogout} handleReveal={handleReveal} handleNavigateSpotify={handleNavigateSpotify} setRevealLists={setRevealLists} setSuccessfullyLogout={setSuccessfullyLogout} setDidClickLogout={setDidClickLogout}/>
       {/* CenterContent (the one with the search bar and the two lists) */}
-      <CenterContent className={`text-white bg-slate-700 pb-10 ${hasClicked || successfullyLogin && 'brightness-50'}`}
+      <CenterContent className={`text-white bg-slate-700 pb-10 ${(hasClicked || successfullyLogin) && 'brightness-50'}`}
       searchSongs={searchSongs} 
       handleSongs={handleSongs} 
       enterKey={enterKey} 
@@ -57,7 +57,7 @@ export default function MainContent({ className, playlists, setPlaylists, newPla
       setPlaylistName={setPlaylistName}/>
 
       {/* BottomContent (the one with the watermark at the bottom) */}
-      <BottomContent className={`text-white bg-slate-900 w-full h-28 ${hasClicked || successfullyLogin && 'brightness-50'}`}/>
+      <BottomContent className={`text-white bg-slate-900 w-full h-28 ${(hasClicked || successfullyLogin) && 'brightness-50'}`}/>
 
       <ModalContent className={`text-white w-full fixed top-0 h-screen ${hasClicked ? 'flex' : 'hidden'} justify-center items-center z-[9000]`}
       newPlaylists={newPlaylists} 
