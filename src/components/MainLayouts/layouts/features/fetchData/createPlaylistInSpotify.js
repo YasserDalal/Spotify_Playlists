@@ -41,6 +41,6 @@ export default async function createPlayLists(accessToken, userId, tracksUris, s
   }
 
   setSpotifyAdd(true);
-  window.history.replaceState({}, document.title, "/");
+  window.history.replaceState(null, '', window.location.pathname);
   return data
 }
