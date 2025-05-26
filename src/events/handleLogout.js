@@ -9,6 +9,6 @@ export default function handleLogout(setDidClickLogout, setSuccessfullyLogout){
   saveStorage('didClickLogout', true);
   saveStorage('successfullyLogout', true);
   removeAllData() // remove all data
-  window.history.replaceState({}, document.title, "/"); // remove the code in URL parameter
+  window.history.replaceState(null, '', window.location.pathname);
   window.location.reload() // refresh the page
 }
