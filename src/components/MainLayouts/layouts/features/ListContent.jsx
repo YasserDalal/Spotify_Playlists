@@ -1,6 +1,7 @@
 
 import ListButton from "../../../buttons/ListButtons";
 import LoadingCards from "@/components/loading UI/CardSkeleton";
+import noMusic from "@/assets/No-music.png";
 
 export default function ListContent({ className, playlists, loading, song, handleClick, newPlaylists, setNewPlaylists, setIsAdded }) {
   return (
@@ -24,7 +25,7 @@ export default function ListContent({ className, playlists, loading, song, handl
               ))
             ) : !playlists && (
               <div className="flex flex-col items-center relative">
-                <img src="../../../../../public/No music.png" alt="No music image" className="w-72"/>
+                <img src={noMusic ? noMusic : "../../../../assets/No-music.png"} alt="No music image" className="w-72"/>
                 <div className="absolute bottom-0">
                   NO MUSIC FOUND
                 </div>
