@@ -11,6 +11,5 @@ export default async function getUserDetails(setUserDetails, token) {
   const userDetails = await response.json()
   saveStorage('userDetails', userDetails);
   setUserDetails(userDetails);
-  console.log(userDetails);
   return userDetails;
 }
