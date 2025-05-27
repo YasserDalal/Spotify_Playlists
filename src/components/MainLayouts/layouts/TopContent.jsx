@@ -15,13 +15,13 @@ export default function TopBar({ className, userDetails, handleLogout, handleRev
           <div className='text-[#28d7a3]'>
             <FontAwesomeIcon icon={faSpotify} size="4x" className='p-4'/>
           </div>
-          <h1 className='font-bold text-3xl'>Spotify PlayLists</h1>
+          <h1 className='font-bold text-[clamp(1rem,5vw,2rem)]'>Spotify PlayLists</h1>
         </div>
-        <div className='pr-10 flex flex-col justify-center'>
+        <div className='flex flex-col justify-center'>
           {userDetails.display_name ? 
           ( 
           <div>
-            <ProfileButton className='flex flex-col relative' userDetails={userDetails} handleLogout={handleLogout} handleReveal={handleReveal} revealLists={revealLists} setRevealLists={setRevealLists}/> 
+            <ProfileButton className='flex flex-col relative w-24 pr-5' userDetails={userDetails} handleLogout={handleLogout} handleReveal={handleReveal} revealLists={revealLists} setRevealLists={setRevealLists}/> 
           </div>
           ) : <Skeleton className=" h-20 rounded-full" />}
         </div>
