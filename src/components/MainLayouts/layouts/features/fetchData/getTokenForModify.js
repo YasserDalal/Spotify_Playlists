@@ -1,6 +1,6 @@
 export default async function getTokenForModify(setToken) {
   const clientId = "225cceb84c1e457e944ffc7386865b8c";
-  const redirectUri = 'https://yasserdalal.github.io/Spotify_Playlists/'; // change this if ngrok changes
+  const redirectUri = window.location.origin + window.location.pathname;
   const scopes = [
     "playlist-modify-private",
     "playlist-modify-public",
