@@ -8,7 +8,7 @@ Developed a clean and responsive UI using warm colors to provide a comfortable e
 
 ## Please Read Me First
 
-I'm sorry that this **Project** is in **Development Mode**, the reason for that is Spotify doesn't want to accept an application to be in **Production Mode** that has less than **250,000 users**. <br><br>No worries we can work this around, 
+I'm sorry, **you can't** use the **full features** of this **Project**, cause this **Project** is in **Development Mode**, the reason for that is Spotify doesn't want to accept an application to be in **Production Mode** that has less than **250,000 users**. <br><br>No worries we can work this around, 
 <br><br> Send me your ```email account``` to your Spotify
 <br><br> &nbsp;&nbsp;Go to my contacts Here are the links → <a href="https://www.facebook.com/yasser.dalal.7">Facebook</a> • <a href="https://www.instagram.com/yassuuee/?hl=en">Instagram</a> • <a href="https://mail.google.com/mail/u/1/#inbox?compose=DmwnWrRmTpDrsTzhDsMqNXdbkfkfgcxqZwQKprRrFVSrsLRkntnQRcZgPxJFvzBDxcdswxkFLPjb">Gmail</a>
 <br><br> I will respond to your message immediately
