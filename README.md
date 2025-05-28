@@ -39,6 +39,15 @@ I'm sorry, **you can't** use the **full features** of this **Project**, cause th
 ### &nbsp;&nbsp;&nbsp;&nbsp;You will see something like this in your terminal
 ![alt text](image-2.png)
 ### &nbsp;&nbsp;&nbsp;&nbsp;Copy the URL below the message and Paste it in a browser
+
+#### Step 12:
+### &nbsp;&nbsp;&nbsp; After you paste it in a browser, Go to <a href="https://developer.spotify.com/">Spotify for Developers</a> and Create an Account
+
+#### Step 13:
+### &nbsp;&nbsp;&nbsp; Go to **Dashboard** of your application and find **Redirect URI's**
+
+#### Step 14:
+### &nbsp;&nbsp;&nbsp; Paste the **URL** of your **Cloudflare** there then click save
 <br>
 <br>
 
